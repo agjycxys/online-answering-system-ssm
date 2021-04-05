@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation=
+               "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop  http://www.springframework.org/schema/context/spring-aop.xsd">
+
+
+    <!--加载JDBC配置-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!--配置数据源对象-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--事务扫描-->
+    <aop:aspectj-autoproxy/>
+
+    <!--配置sessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <!--加载mybatis核心文件-->
+        <property name="configLocation" value="classpath:sqlMapConfig.xml"></property>
+    </bean>
+
+    <!--扫描mapper所在的包 为mapper创建实现类-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.itheima.mapper"></property>
+    </bean>
+</beans>
