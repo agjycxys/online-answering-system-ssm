@@ -14,17 +14,17 @@ public class AdminController {
     private AdminService adminService;
 
     @RequestMapping("/login")
-    public ModelAndView login(String adname,String adpwd,ModelAndView modelAndView){
+    public ModelAndView login(String adname, String adpwd, ModelAndView modelAndView) {
         Admin admin = new Admin();
         admin.setAdname(adname);
         admin.setAdpwd(adpwd);
         Admin existAdmin = adminService.login(admin);
 
         //根据处理结果显示信息(页面跳转)
-        if(existAdmin == null){
+        if (existAdmin == null) {
             modelAndView.addObject("error", "用户名或密码不正确 !");
             modelAndView.setViewName("admin/login.jsp");
-        }else{
+        } else {
             modelAndView.addObject("adname", admin.getAdname());
             modelAndView.setViewName("admin/main.jsp");
         }

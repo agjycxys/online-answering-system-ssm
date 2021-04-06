@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agjycxys.mapper.TiKuMapper">
+    <insert id="addTiKu" parameterType="com.agjycxys.domain.TiKu">
+        INSERT INTO tiku(tkname, tkscore)
+        VALUES (${tkname}, ${tkscore})
+    </insert>
+    <update id="editTiKu">
+        UPDATE tiku
+        SET tkname=${tkname},
+            tkscore=${tkscore}
+        WHERE tkid = ${tkid}
+    </update>
+    <delete id="delTiKu">
+        DELETE
+        FROM tiku
+        WHERE tkid = ${tkid}
+    </delete>
+    <select id="queryTiKuAll" resultType="com.agjycxys.domain.TiKu">
+        SELECT *
+        FROM tiku
+    </select>
+    <select id="queryTKNameByTKid" resultType="java.lang.String">
+        select tkname
+        from tiku
+        where tkid = ${tkid}
+    </select>
+    <select id="queryTKScoreByTkid" resultType="java.lang.String">
+        select tkscore
+        from tiku
+        where tkid = ${tkid}
+    </select>
+
+</mapper>

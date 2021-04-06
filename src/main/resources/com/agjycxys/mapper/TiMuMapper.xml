@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agjycxys.mapper.TiMuMapper">
+    <insert id="addTiMu" parameterType="com.agjycxys.domain.TiMu">
+        INSERT INTO timu(tmname, tmtype, optionA, optionB, optionC, optionD, answer, tmscore)
+        VALUES (${tmname}, ${tmtype}, ${optionA}, ${optionB}, ${optionC}, ${optionD}, ${answer}, ${tmscore})
+    </insert>
+    <update id="editTiMu" parameterType="com.agjycxys.domain.TiMu">
+        UPDATE timu
+        SET tmname=${tmname},
+            tmtype=${tmtype},
+            optionA=${optionA},
+            optionB=${optionB},
+            optionC=${optionC},
+            optionD=${optionD},
+            answer=${answer},
+            tmscore=${tmscore}
+        where tmid = ${tmid}
+    </update>
+    <delete id="delTiMu">
+        DELETE
+        FROM timu
+        WHERE tmid = ${tmid}
+    </delete>
+    <select id="queryTiMuAll" resultType="com.agjycxys.domain.TiMu">
+        SELECT *
+        FROM timu
+    </select>
+</mapper>

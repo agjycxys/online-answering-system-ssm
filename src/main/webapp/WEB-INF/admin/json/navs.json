@@ -1,0 +1,50 @@
+{
+	"QuestionBankCenter": [
+		{
+			"title": "题库管理",
+			"icon": "&#xe63c;",
+			"href": "admin/tiku/list.jsp",
+			"spread": false
+		}
+	],
+	"QuestionsCenter": [
+		{
+			"title": "题目管理",
+			"icon": "&#xe63c;",
+			"href": "admin/timu/list.jsp",
+			"spread": false
+		}
+	],
+	"InterviewerCenter": [
+		{
+			"title": "面试官管理",
+			"icon": "&#xe612;",
+			"href": "admin/msg/msg_list.jsp",
+			"spread": false
+		}
+	],
+	"ExaminationRoomCenter": [
+		{
+			"title": "考场管理",
+			"icon": "&#xe614;",
+			"href": "admin/kc/kc_list.jsp",
+			"spread": false
+		}
+	],
+	"StatisticsCenter": [
+		{
+			"title": "试题分析",
+			"icon": "&#xe62c;",
+			"href": "admin/allResult/Analysis.jsp",
+			"spread": false
+		},
+		{
+			"title": "候选人信息查询",
+			"icon": "&#xe615;",
+			"href": "admin/allResult/userInfo.jsp",
+			"spread": false
+		}
+	]
+}
+
+

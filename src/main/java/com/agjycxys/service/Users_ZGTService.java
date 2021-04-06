@@ -16,12 +16,12 @@ public class Users_ZGTService {
 
 	// 存储主观题
 	public void AddZGT(Users_ZGT users_ZGT) {
-		users_zgtMapper.AddZGT(users_ZGT);
+		users_zgtMapper.addZGT(users_ZGT);
 	}
 
 	// 存储答案
 	public void AddZGTScore(String openid, int zgtscore) {
-		users_zgtMapper.AddZGTScore(openid, zgtscore);
+		users_zgtMapper.addZGTScore(openid, zgtscore);
 	}
 
 	// 如果面试官评阅 将ispingyue改为1

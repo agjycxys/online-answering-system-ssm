@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agjycxys.mapper.KC_TKMapper">
+    <insert id="addtk_kc">
+        insert into kc_tiku(kcid, tkid)
+        values (${kcid}, ${tkid})
+    </insert>
+
+    <delete id="deltk_kc">
+        delete
+        from kc_tiku
+        where tkid = ${tkid}
+    </delete>
+
+    <select id="queryTkByKCid" resultType="com.agjycxys.domain.TiKu">
+        SELECT *
+        FROM tiku
+        WHERE tkid IN (SELECT tkid FROM kc_tiku WHERE kcid = ${kcid})
+    </select>
+
+    <select id="queryTKidByKCid" resultType="java.lang.Object">
+        SELECT tkid
+        FROM kc_tiku
+        WHERE kcid = ${kcid}
+        ORDER BY RAND()
+        LIMIT 1
+    </select>
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agjycxys.mapper.KCMapper">
+    <insert id="addKC" parameterType="com.agjycxys.domain.KC">
+        insert into kc(kcname, starttime, endtime)
+        VALUES (${kcname}, ${starttime}, ${endtime})
+    </insert>
+    <update id="editKC" parameterType="com.agjycxys.domain.KC">
+        update kc
+        set kcname    = ${kcname},
+            starttime = ${starttime},
+            endtime= ${endtime}
+        where kcid = ${kcid}
+    </update>
+    <delete id="delKC" parameterType="string">
+        delete
+        from kc
+        where kcid = ${kcid}
+    </delete>
+    <select id="queryKCAll" resultType="com.agjycxys.domain.KC">
+        select *
+        from kc
+    </select>
+    <select id="queryKCNameByKCid" resultType="com.agjycxys.domain.KC">
+        SELECT kcname
+        from kc
+        where kcid = ${kcid}
+    </select>
+    <select id="queryStarttimeByKCid" resultType="java.lang.Object">
+        SELECT starttime
+        FROM kc
+        WHERE kcid = ${kcid}
+    </select>
+    <select id="queryEndtimeByKCid" resultType="java.lang.Object">
+        SELECT endtime
+        FROM kc
+        WHERE kcid = ${kcid}
+    </select>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agjycxys.mapper.Users_ZGTMapper">
+    <insert id="addZGT" parameterType="com.agjycxys.domain.Users_ZGT">
+        insert into users_zgt(tmid, openid, usersname, tmname, tmscore, zgtanswer, ispingyue)
+        values (${tmid}, ${openid}, ${usersname}, ${tmname}, ${tmscore}, ${zgtanswer}, ${ispingyue})
+    </insert>
+    <update id="addZGTScore">
+        update users_zgt
+        set zgtscore = ${zgtscore}
+        where openid = ${openid}
+    </update>
+    <update id="updateIsPY">
+        update users_zgt
+        set ispingyue = ${ispingyue}
+        where openid = ${openid}
+    </update>
+    <select id="queryAll" resultType="com.agjycxys.domain.Users_ZGT">
+        select *
+        from users_zgt
+    </select>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agjycxys.mapper.MSGMapper">
+    <insert id="addMSG">
+        INSERT INTO msg(msgaccount, msgpwd, msgname, msgphone)
+        VALUES (${msgaccount}, ${msgpwd}, ${msgname}, ${msgphone})
+    </insert>
+    <update id="addmsg_kc">
+        update msg
+        set kcid = ${kcid}
+        where msgid = ${msgid}
+    </update>
+    <update id="updateMSG">
+        update msg
+        set msgphone = ${msgphone}
+        where msgid = ${msgid}
+    </update>
+    <update id="delmsg_kc">
+        UPDATE msg
+        SET kcid = NULL
+        WHERE msgid = ${msgid}
+    </update>
+    <update id="editMSG">
+        UPDATE msg
+        SET msgaccount=${msgaccount},
+            msgpwd=${msgpwd},
+            msgname=${msgname},
+            msgphone=${msgphone}
+        where msgid = ${msgid}
+    </update>
+    <delete id="delMSG">
+        DELETE
+        FROM msg
+        WHERE msgid = ${msgid}
+    </delete>
+    <select id="queryMSGid" resultType="java.lang.Object">
+        select msgid
+        from msg
+        where msgaccount = ${msgaccount}
+    </select>
+    <select id="queryUsers_zgtByMSGid" resultType="com.agjycxys.domain.Users_ZGT">
+        SELECT *
+        FROM users_zgt
+        WHERE openid IN (SELECT openid FROM users WHERE kcid = (SELECT kcid FROM msg WHERE msgid = ${msgid}))
+    </select>
+    <select id="queryMSGByMSGid" resultType="com.agjycxys.domain.MSG">
+        SELECT *
+        FROM msg
+        where msgid = ${msgid}
+    </select>
+    <select id="login" resultType="com.agjycxys.domain.MSG">
+        SELECT *
+        FROM msg
+        WHERE msgaccount = ${msgaccount}
+          AND msgpwd = ${msgpwd}
+    </select>
+    <select id="lookmsg_kc" resultType="com.agjycxys.domain.MSG">
+        SELECT *
+        FROM msg
+        WHERE kcid = ${kcid}
+    </select>
+    <select id="queryMSGAll" resultType="com.agjycxys.domain.MSG">
+        SELECT *
+        FROM msg
+    </select>
+
+
+</mapper>

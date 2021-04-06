@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agjycxys.mapper.UsersMapper">
+    <insert id="addUserInfo" parameterType="com.agjycxys.domain.Users">
+        INSERT INTO users(usersname, xingbie, dianhua, xuexiao, zhuanye, xueli, wxname, openid, kcid)
+        VALUES (${usersname}, ${xingbie}, ${dianhua}, ${xuexiao}, ${zhuanye}, ${xueli}, ${wxname}, ${openid}, ${kcid})
+    </insert>
+    <update id="addKGTscore">
+        update users
+        set kgtscore = ${kgtscore}
+        where openid = ${openid}
+    </update>
+    <select id="queryUsers" resultType="com.agjycxys.domain.Users">
+        SELECT *
+        FROM users
+    </select>
+    <select id="queryNameByOpenid" resultType="java.lang.Object">
+        SELECT usersname
+        FROM users
+        WHERE openid = ${openid}
+    </select>
+    <select id="queryUsersByName" resultType="com.agjycxys.domain.Users">
+        SELECT *
+        FROM users
+        WHERE usersname = ${usersname}
+    </select>
+    <select id="queryUsersByMixScore" resultType="com.agjycxys.domain.Users">
+        SELECT *
+        FROM users
+        WHERE score &lt;= ${score}
+    </select>
+    <select id="queryUsersByMinScore" resultType="com.agjycxys.domain.Users">
+        SELECT *
+        FROM users
+        WHERE score &gt;= ${score}
+    </select>
+    <select id="queryUsersByScore" resultType="com.agjycxys.domain.Users">
+        SELECT *
+        FROM users
+        WHERE score &gt;= ?
+          and score &lt;= ?
+    </select>
+
+</mapper>

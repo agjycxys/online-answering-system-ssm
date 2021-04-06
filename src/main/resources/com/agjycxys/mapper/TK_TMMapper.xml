@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agjycxys.mapper.TK_TMMapper">
+    <insert id="addtm_tk">
+        insert into tiku_timu(tkid, tmid)
+        values (${tkid}, ${tmid})
+    </insert>
+    <delete id="deltm_tk">
+        delete
+        from tiku_timu
+        where tmid = ${tmid}
+    </delete>
+    <select id="queryTMByTKid" resultType="com.agjycxys.domain.TiMu">
+        SELECT SUM(tmscore) AS tmscores
+        FROM timu
+        WHERE tmid IN (SELECT tmid FROM tiku_timu WHERE tkid = ${tkid})
+    </select>
+    <select id="queryTMScoresBytkid" resultType="java.lang.Object">
+        SELECT *
+        FROM timu
+        WHERE tmid IN (SELECT tmid FROM tiku_timu WHERE tkid = ${tkid})
+    </select>
+</mapper>

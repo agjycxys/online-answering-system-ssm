@@ -10,6 +10,7 @@ public class AdminService {
 
 	@Autowired
 	private AdminMapper adminMapper;
+
 	public Admin login(Admin admin){
 		return adminMapper.login(admin);
 	}

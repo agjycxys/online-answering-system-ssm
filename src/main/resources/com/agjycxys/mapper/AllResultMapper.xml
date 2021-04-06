@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.agjycxys.mapper.AllResultMapper">
+    <insert id="addResult" parameterType="com.agjycxys.domain.AllResult">
+        INSERT INTO allresult (openid, kcid, tkid, results)
+        VALUES (${openid}, ${kcid}, ${tkid}, ${results})
+    </insert>
+    <select id="queryResults" parameterType="string" resultType="com.agjycxys.domain.AllResult">
+        SELECT *
+        FROM allresult
+        WHERE kcid = ${kcid}
+          AND tkid = ${tkid}
+    </select>
+</mapper>
